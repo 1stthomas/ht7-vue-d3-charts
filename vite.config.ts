@@ -1,14 +1,15 @@
-import * as path from 'path';
+import { resolve } from "path"
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
     lib: {
-      // Could also be a dictionary or array of multiple entry points
-      entry: path.resolve(__dirname, 'lib/main.js'),
-      name: 'ht7 d3 charts for vue',
+      // src/indext.ts is where the exported component are
+      entry: resolve(__dirname, "src/index.ts"),
+      name: 'ht7d3ChartsForVue',
       // the proper extensions will be added
       fileName: 'ht7-vue-d3-charts',
     },
@@ -34,13 +35,14 @@ export default defineConfig({
       }
     }
   },
-  plugins: [vue()],
+  // dts is needed to make the types available.
+  plugins: [dts({ rollupTypes: true }), vue()],
   resolve: {
     alias: {
       // '@base': path.resolve(__dirname, '.'),
-      '@components': path.resolve(__dirname, 'src', 'components'),
-      '@assets': path.resolve(__dirname, 'src', 'assets'),
-      '@scss-components': path.resolve(__dirname, 'src', 'assets', 'scss', 'components')
+      '@components': resolve(__dirname, 'src', 'components'),
+      '@assets': resolve(__dirname, 'src', 'assets'),
+      '@scss-components': resolve(__dirname, 'src', 'assets', 'scss', 'components')
     }
   },
 })
