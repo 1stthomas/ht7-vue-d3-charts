@@ -1,8 +1,19 @@
 {
   "name": "ht7-vue-d3-charts",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/ht7-vue-d3-charts.umd.cjs",
+  "module": "./dist/ht7-vue-d3-charts.js",
+  "exports": {
+    ".": {
+      "import": "./dist/ht7-vue-d3-charts.js",
+      "require": "./dist/ht7-vue-d3-charts.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
@@ -12,6 +23,7 @@
     "vue": "^3.4.21"
   },
   "devDependencies": {
+    "@types/node": "^20.12.6",
     "@vitejs/plugin-vue": "^5.0.4",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
